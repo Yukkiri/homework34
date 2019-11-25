@@ -6,6 +6,11 @@
         <item>Русский</item>
         <item>English</item>
     </string-array>
+    <string-array name="color">
+        <item>Красный</item>
+        <item>Зелёный</item>
+        <item>Синий</item>
+    </string-array>
     <string name="text">Быть или не быть, вот в чём вопрос. Достойно ль\n
         Смиряться под ударами судьбы,\n
         Иль надо оказать сопротивленье\n

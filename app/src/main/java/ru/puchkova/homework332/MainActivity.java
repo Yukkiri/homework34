@@ -8,20 +8,19 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private Spinner languageSpinner;
+    private Spinner colorSpinner;
     private Button ok;
-    private TextView text;
-    Locale locale = new Locale("ru");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Utils.onActivityCreateSetTheme(this);
 
         init();
     }
@@ -29,16 +28,23 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         languageSpinner = findViewById(R.id.languageSpinner);
         ok = findViewById(R.id.ok);
-        text = findViewById(R.id.text);
-        initSpinnerCountries();
+        colorSpinner = findViewById(R.id.colorSpinner);
+        initSpinnerLanguage();
+        initSpinnerColor();
 
         ok.setOnClickListener(onClickListener);
     }
 
-    private void initSpinnerCountries() {
-        ArrayAdapter<CharSequence> adapterCountries = ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_item);
-        adapterCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        languageSpinner.setAdapter(adapterCountries);
+    private void initSpinnerLanguage() {
+        ArrayAdapter<CharSequence> adapterLanguage = ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_item);
+        adapterLanguage.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languageSpinner.setAdapter(adapterLanguage);
+    }
+
+    private void initSpinnerColor() {
+        ArrayAdapter<CharSequence> adapterColor = ArrayAdapter.createFromResource(this, R.array.color, android.R.layout.simple_spinner_item);
+        adapterColor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorSpinner.setAdapter(adapterColor);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -56,6 +62,33 @@ public class MainActivity extends AppCompatActivity {
             }
             getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             recreate();
+
+            int color = chooseColor();
+            setColor(color);
         }
     };
+
+    private int chooseColor(){
+        if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Green") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Зелёный")){
+            return 2;
+        } else if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("red") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("красный")){
+            return 1;
+        } else {
+            return 3;
+        }
+    }
+
+    private void setColor(int color){
+        switch (color){
+            case 1:
+                Utils.changeToTheme(this, Utils.THEME_DEFAULT);
+                break;
+            case 3:
+                Utils.changeToTheme(this, Utils.THEME_BLUE);
+                break;
+            case 2:
+                Utils.changeToTheme(this, Utils.THEME_GREEN);
+                break;
+        }
+    }
 }

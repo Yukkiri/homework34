@@ -7,9 +7,9 @@
         <item>English</item>
     </string-array>
     <string-array name="color">
-        <item>Красный</item>
-        <item>Зелёный</item>
-        <item>Синий</item>
+        <item>Мелкие</item>
+        <item>Средние</item>
+        <item>Большие</item>
     </string-array>
     <string name="text">Быть или не быть, вот в чём вопрос. Достойно ль\n
         Смиряться под ударами судьбы,\n

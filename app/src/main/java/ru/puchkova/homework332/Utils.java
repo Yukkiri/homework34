@@ -9,8 +9,8 @@ public class Utils
     private static int sTheme;
 
     public final static int THEME_DEFAULT = 0;
-    public final static int THEME_RED = 1;
-    public final static int THEME_BLUE = 2;
+    public final static int THEME_SMALL = 1;
+    public final static int THEME_MEDIUM = 2;
 
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
@@ -31,13 +31,13 @@ public class Utils
         {
             default:
             case THEME_DEFAULT:
-                activity.setTheme(R.style.AppThemeGreen);
+                activity.setTheme(R.style.AppThemeHuge);
                 break;
-            case THEME_RED:
-                activity.setTheme(R.style.AppThemeRed);
+            case THEME_SMALL:
+                activity.setTheme(R.style.AppThemeSmall);
                 break;
-            case THEME_BLUE:
-                activity.setTheme(R.style.AppThemeBlue);
+            case THEME_MEDIUM:
+                activity.setTheme(R.style.AppThemeMedium);
                 break;
         }
     }

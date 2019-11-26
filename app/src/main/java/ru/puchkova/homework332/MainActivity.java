@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private int chooseColor(){
-        if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Green") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Зелёный")){
+        if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Huge") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Большие")){
             return 1;
-        } else if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("red") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("красный")){
+        } else if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("small") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Мелкие")){
             return 2;
         } else {
             return 3;
@@ -85,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 Utils.changeToTheme(this, Utils.THEME_DEFAULT);
                 break;
             case 3:
-                Utils.changeToTheme(this, Utils.THEME_BLUE);
+                Utils.changeToTheme(this, Utils.THEME_MEDIUM);
                 break;
             case 2:
-                Utils.changeToTheme(this, Utils.THEME_RED);
+                Utils.changeToTheme(this, Utils.THEME_SMALL);
                 break;
         }
     }

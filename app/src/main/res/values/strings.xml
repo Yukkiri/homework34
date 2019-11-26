@@ -6,9 +6,9 @@
         <item>English</item>
     </string-array>
     <string-array name="color">
-        <item>Red</item>
-        <item>Green</item>
-        <item>Blue</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Huge</item>
     </string-array>
     <string name="text">To be, or not to be, that is the question:\n
     Whether ’tis nobler in the mind to suffer\n

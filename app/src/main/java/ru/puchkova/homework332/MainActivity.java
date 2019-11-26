@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Utils.onActivityCreateSetTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Utils.onActivityCreateSetTheme(this);
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
 
         init();
     }
@@ -70,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
     private int chooseColor(){
         if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Green") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Зелёный")){
-            return 2;
-        } else if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("red") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("красный")){
             return 1;
+        } else if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("red") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("красный")){
+            return 2;
         } else {
             return 3;
         }
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 Utils.changeToTheme(this, Utils.THEME_BLUE);
                 break;
             case 2:
-                Utils.changeToTheme(this, Utils.THEME_GREEN);
+                Utils.changeToTheme(this, Utils.THEME_RED);
                 break;
         }
     }

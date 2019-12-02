@@ -1,5 +1,6 @@
 package ru.puchkova.homework332;
 
+import androidx.annotation.IntDef;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
@@ -13,7 +14,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private Spinner languageSpinner;
-    private Spinner colorSpinner;
+    private Spinner sizeSpinner;
     private Button ok;
 
     @Override
@@ -26,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         languageSpinner = findViewById(R.id.languageSpinner);
         ok = findViewById(R.id.ok);
-        colorSpinner = findViewById(R.id.colorSpinner);
+        sizeSpinner = findViewById(R.id.sizeSpinner);
         initSpinnerLanguage();
         initSpinnerColor();
 
@@ -43,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSpinnerColor() {
-        ArrayAdapter<CharSequence> adapterColor = ArrayAdapter.createFromResource(this, R.array.color, android.R.layout.simple_spinner_item);
-        adapterColor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        colorSpinner.setAdapter(adapterColor);
+        ArrayAdapter<CharSequence> adapterSize = ArrayAdapter.createFromResource(this, R.array.size, android.R.layout.simple_spinner_item);
+        adapterSize.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sizeSpinner.setAdapter(adapterSize);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             Locale localeEn = new Locale("en");
             Configuration config = new Configuration();
             String language = languageSpinner.getSelectedItem().toString();
-            if (language.equals("English")){
+            if (language.equals("English")) {
                 config.setLocale(localeEn);
             } else {
                 config.setLocale(localeRu);
@@ -64,27 +65,24 @@ public class MainActivity extends AppCompatActivity {
             getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             recreate();
 
-            int color = chooseColor();
-            setColor(color);
+            int size = sizeSpinner.getSelectedItemPosition();
+            setSize(size);
         }
     };
 
-    private int chooseColor(){
-        if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Huge") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Большие")){
-            return 1;
-        } else if (colorSpinner.getSelectedItem().toString().equalsIgnoreCase("small") || colorSpinner.getSelectedItem().toString().equalsIgnoreCase("Мелкие")){
-            return 2;
-        } else {
-            return 3;
-        }
+    @IntDef({size.SMALL, size.MEDIUM, size.HUGE})
+    private @interface size {
+        int HUGE = 0;
+        int MEDIUM = 1;
+        int SMALL = 2;
     }
 
-    private void setColor(int color){
-        switch (color){
-            case 1:
+    private void setSize(int size) {
+        switch (size) {
+            case 0:
                 Utils.changeToTheme(this, Utils.THEME_DEFAULT);
                 break;
-            case 3:
+            case 1:
                 Utils.changeToTheme(this, Utils.THEME_MEDIUM);
                 break;
             case 2:
